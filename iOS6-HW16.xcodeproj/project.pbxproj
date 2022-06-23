@@ -13,6 +13,10 @@
 		3A8DB0B1286457A9008EC203 /* StudentViewController+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8DB0B0286457A9008EC203 /* StudentViewController+Constants.swift */; };
 		3A8DB0B3286457EF008EC203 /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8DB0B2286457EF008EC203 /* UIView+Constraints.swift */; };
 		3A8DB0B528645816008EC203 /* UIStackView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8DB0B428645816008EC203 /* UIStackView+Constraints.swift */; };
+		3A8DB0B728645C9E008EC203 /* StudentPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8DB0B628645C9E008EC203 /* StudentPresenter.swift */; };
+		3A8DB0B928645CBF008EC203 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8DB0B828645CBF008EC203 /* Student.swift */; };
+		3A8DB0BB28645CE7008EC203 /* StudentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8DB0BA28645CE7008EC203 /* StudentModel.swift */; };
+		3A8DB0BD28645D61008EC203 /* StudentPresenter+Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A8DB0BC28645D61008EC203 /* StudentPresenter+Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		3A8DB0B0286457A9008EC203 /* StudentViewController+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudentViewController+Constants.swift"; sourceTree = "<group>"; };
 		3A8DB0B2286457EF008EC203 /* UIView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
 		3A8DB0B428645816008EC203 /* UIStackView+Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+Constraints.swift"; sourceTree = "<group>"; };
+		3A8DB0B628645C9E008EC203 /* StudentPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentPresenter.swift; sourceTree = "<group>"; };
+		3A8DB0B828645CBF008EC203 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
+		3A8DB0BA28645CE7008EC203 /* StudentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentModel.swift; sourceTree = "<group>"; };
+		3A8DB0BC28645D61008EC203 /* StudentPresenter+Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StudentPresenter+Constants.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +113,7 @@
 				3A8DB0B0286457A9008EC203 /* StudentViewController+Constants.swift */,
 				3A8DB0B2286457EF008EC203 /* UIView+Constraints.swift */,
 				3A8DB0B428645816008EC203 /* UIStackView+Constraints.swift */,
+				3A8DB0BC28645D61008EC203 /* StudentPresenter+Constants.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -128,6 +137,7 @@
 		3A8DB0AD28645641008EC203 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				3A8DB0B628645C9E008EC203 /* StudentPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -143,6 +153,8 @@
 		3A8DB0AF28645652008EC203 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3A8DB0B828645CBF008EC203 /* Student.swift */,
+				3A8DB0BA28645CE7008EC203 /* StudentModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -216,10 +228,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3A8DB0B728645C9E008EC203 /* StudentPresenter.swift in Sources */,
 				3A8DB0972864548B008EC203 /* StudentViewController.swift in Sources */,
 				3A8DB0B1286457A9008EC203 /* StudentViewController+Constants.swift in Sources */,
 				3A8DB0932864548B008EC203 /* AppDelegate.swift in Sources */,
 				3A8DB0B528645816008EC203 /* UIStackView+Constraints.swift in Sources */,
+				3A8DB0BD28645D61008EC203 /* StudentPresenter+Constants.swift in Sources */,
+				3A8DB0BB28645CE7008EC203 /* StudentModel.swift in Sources */,
+				3A8DB0B928645CBF008EC203 /* Student.swift in Sources */,
 				3A8DB0B3286457EF008EC203 /* UIView+Constraints.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
