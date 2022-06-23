@@ -9,6 +9,10 @@ import UIKit
 
 class StudentViewController: UIViewController {
     
+    // MARK: - Properties
+    
+    private let studentPresenter = StudentPresenter(studentModel: StudentModel())
+    
     // MARK: - Views
     
     private lazy var photoImageView: UIImageView = {
@@ -113,6 +117,7 @@ class StudentViewController: UIViewController {
         let button = UIButton(configuration: configuration, primaryAction: nil)
         button.configuration?.title = Strings.startRandomStudentButtonTitle
         button.titleLabel?.font = UIFont.systemFont(ofSize: Metric.secondaryFontSize)
+        button.addTarget(self, action: #selector(showStudent), for: .touchUpInside)
         return button
     }()
     
@@ -137,6 +142,7 @@ class StudentViewController: UIViewController {
         setupView()
         setupHieararchy()
         setupLayout()
+        studentPresenter.setViewDelegate(studentViewDelegate: self)
     }
     
     //MARK: - Settings
@@ -181,9 +187,9 @@ class StudentViewController: UIViewController {
         NSLayoutConstraint.activate([
             photoImageView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor, constant: Metric.photoTopIndent),
             photoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            photoImageView.bottomAnchor.constraint(equalTo: firstNameLabel.topAnchor,constant: -Metric.firstTextFieldTopIndent),
             photoImageView.widthAnchor.constraint(equalToConstant: Metric.photoSize),
             photoImageView.heightAnchor.constraint(equalTo: photoImageView.widthAnchor),
-            photoImageView.bottomAnchor.constraint(equalTo: firstNameLabel.topAnchor,constant: -Metric.firstTextFieldTopIndent),
             
             studentInfoStackView.topAnchor.constraint(equalTo: photoImageView.bottomAnchor, constant: Metric.stackViewTopIndent),
             studentInfoStackView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Metric.indentLR),
@@ -191,15 +197,15 @@ class StudentViewController: UIViewController {
             studentInfoStackView.heightAnchor.constraint(equalTo: studentInfoStackView.widthAnchor, multiplier: Metric.stackViewHeightMultiplier),
 
             randomStudentButton.topAnchor.constraint(equalTo: studentInfoStackView.bottomAnchor, constant: Metric.indentTop),
-            randomStudentButton.heightAnchor.constraint(lessThanOrEqualToConstant: Metric.buttonHeight),
             randomStudentButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            randomStudentButton.heightAnchor.constraint(lessThanOrEqualToConstant: Metric.buttonHeight),
             randomStudentButton.widthAnchor.constraint(equalToConstant: Metric.buttonWidth),
 
             podiumImageView.topAnchor.constraint(equalTo: randomStudentButton.bottomAnchor, constant: Metric.podiumImageViewTopIndent),
-            podiumImageView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
             podiumImageView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             podiumImageView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-
+            podiumImageView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor),
+            
             closeButton.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor),
             closeButton.trailingAnchor.constraint(equalTo:  view.layoutMarginsGuide.trailingAnchor, constant: -Metric.closeButtonIndent),
             closeButton.widthAnchor.constraint(equalToConstant: Metric.closeButtonSize),
@@ -207,4 +213,26 @@ class StudentViewController: UIViewController {
         ])
     }
 }
+
+// MARK: - Actions
+
+extension StudentViewController {
+    @objc func showStudent() {
+        studentPresenter.randomStudentSelected()
+        randomStudentButton.setTitle(Strings.nextRandomStudentButtonTitle, for: .normal)
+    }
+}
+
+// MARK: - StudentViewDelegate
+
+extension StudentViewController: StudentViewDelegate {
+    func displayStudent(student: Student) {
+        firstNameTextField.text = student.firstName
+        lastNameTextField.text = student.lastName
+        pointTextField.text = "⭐️ \(student.points)"
+        photoImageView.image = UIImage(named: student.avatar ?? "")
+        podiumImageView.image = UIImage(named: student.place ?? "")
+    }
+}
+
 
