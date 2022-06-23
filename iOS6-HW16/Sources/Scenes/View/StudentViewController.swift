@@ -110,13 +110,12 @@ class StudentViewController: UIViewController {
     }()
     
     private lazy var randomStudentButton: UIButton = {
-        var configuration = UIButton.Configuration.filled()
-        configuration.baseBackgroundColor = #colorLiteral(red: 0.2593759298, green: 0.5698557496, blue: 1, alpha: 1)
-        configuration.baseForegroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        configuration.background.cornerRadius = Metric.buttonRadius
-        let button = UIButton(configuration: configuration, primaryAction: nil)
-        button.configuration?.title = Strings.startRandomStudentButtonTitle
+        let button = UIButton(type: .system)
+        button.setTitle(Strings.startRandomStudentButtonTitle, for: .normal)
         button.titleLabel?.font = UIFont.systemFont(ofSize: Metric.secondaryFontSize)
+        button.tintColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        button.backgroundColor = #colorLiteral(red: 0.2593759298, green: 0.5698557496, blue: 1, alpha: 1)
+        button.layer.cornerRadius = Metric.buttonRadius
         button.addTarget(self, action: #selector(showStudent), for: .touchUpInside)
         return button
     }()
@@ -125,6 +124,7 @@ class StudentViewController: UIViewController {
         let button = UIButton(type: .close)
         button.tintColor = .white
         button.layer.cornerRadius = Metric.closeButtonRadius
+        button.addTarget(self, action: #selector(close), for: .touchUpInside)
         return button
     }()
     
@@ -221,6 +221,12 @@ extension StudentViewController {
         studentPresenter.randomStudentSelected()
         randomStudentButton.setTitle(Strings.nextRandomStudentButtonTitle, for: .normal)
     }
+    
+    @objc
+    func close() {
+        studentPresenter.clearDisplay()
+        randomStudentButton.setTitle(Strings.startRandomStudentButtonTitle, for: .normal)
+    }
 }
 
 // MARK: - StudentViewDelegate
@@ -232,6 +238,14 @@ extension StudentViewController: StudentViewDelegate {
         pointTextField.text = "⭐️ \(student.points)"
         photoImageView.image = UIImage(named: student.avatar ?? "")
         podiumImageView.image = UIImage(named: student.place ?? "")
+    }
+    
+    func displayDefault(student: (description: String?, avatar: String, place: String)) {
+        firstNameTextField.text = student.description
+        lastNameTextField.text = student.description
+        pointTextField.text = student.description
+        photoImageView.image = UIImage(named: student.avatar)
+        podiumImageView.image = UIImage(named: student.place)
     }
 }
 
