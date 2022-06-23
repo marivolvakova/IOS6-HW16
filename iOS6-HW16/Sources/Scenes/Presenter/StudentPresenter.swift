@@ -9,6 +9,9 @@
 
 protocol StudentViewDelegate: AnyObject {
     func displayStudent(student: Student)
+    func displayDefault(student: (description: String?,
+                                  avatar: String,
+                                  place: String))
 }
 
 // MARK: - StudentPresenter
@@ -39,6 +42,8 @@ class StudentPresenter {
         }
     }
     
+    // MARK: - Button actions
+    
     func randomStudentSelected() {
         studentModel.createStudent { [weak self] student in
             if let student = student {
@@ -52,6 +57,13 @@ class StudentPresenter {
                     place: place))
             }
         }
+    }
+    
+    func clearDisplay() {
+        self.studentViewDelegate?.displayDefault(student: (
+            description: nil,
+            avatar: Strings.defaultAvatar,
+            place: Strings.defaultPodium))
     }
 }
 
